@@ -1,6 +1,3 @@
-/* http://meyerweb.com/eric/tools/css/reset/ */
-/* v1.0 | 20080212 */
-
 body,
 div,
 span,
@@ -69,6 +66,7 @@ td {
   font-size: 100%;
   vertical-align: baseline;
   background: transparent;
+  font-family: sans-serif;
 }
 
 html {
@@ -100,12 +98,10 @@ q:after {
   content: none;
 }
 
-/* remember to define focus styles! */
 :focus {
   outline: 0;
 }
 
-/* remember to highlight inserts somehow! */
 ins {
   text-decoration: none;
 }
@@ -113,7 +109,6 @@ del {
   text-decoration: line-through;
 }
 
-/* tables still need 'cellspacing="0"' in the markup */
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -124,7 +119,7 @@ a {
   color: inherit;
 }
 
-/* button {
-  border: none;
-  padding: 0;
-} */
+#root {
+  min-height: 100vh;
+  background-color: rgb(73, 73, 160);
+}

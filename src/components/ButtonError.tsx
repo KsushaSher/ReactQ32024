@@ -17,7 +17,7 @@ class ButtonError extends React.Component<Record<string, never>, IState> {
   render(): React.ReactNode {
     if (this.state?.synthError) throw new Error();
     return (
-      <button className="buttonError" onClick={this.handleClick}>
+      <button className="button_error" onClick={this.handleClick}>
         Throw error
       </button>
     );

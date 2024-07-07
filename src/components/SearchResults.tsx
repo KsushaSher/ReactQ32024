@@ -1,31 +1,29 @@
 import React from 'react';
 import { IItem } from '../App';
 
-interface ISearchResultsProps {
+interface IProps {
   items: IItem[];
 }
-interface ISearchResultsState {}
+interface IState {}
 
-class SearchResults extends React.Component<
-  ISearchResultsProps,
-  ISearchResultsState
-> {
-  constructor(props: ISearchResultsProps) {
+class SearchResults extends React.Component<IProps, IState> {
+  constructor(props: IProps) {
     super(props);
   }
+
   render(): React.ReactNode {
-    if (this.props.items.length > 0)
-      return (
-        <div className="results">
-          {this.props.items.map(e => (
-            <div className="item" key={e.url}>
-              <p>name: {e.name}</p>
-              <p>orbital period: {e.orbital_period}</p>
-            </div>
-          ))}
-        </div>
-      );
-    else return <div className="results">empty...</div>;
+    return (
+      <div className="search_result">
+        {this.props.items.map(e => (
+          <div className="item" key={e.url}>
+            <p>name: {e.name}</p>
+            <p>orbital period: {e.orbital_period}</p>
+            <p>population: {e.population}</p>
+          </div>
+        ))}
+        {this.props.items.length === 0 && 'empty...'}
+      </div>
+    );
   }
 }
 

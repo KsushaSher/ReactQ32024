@@ -6,20 +6,19 @@ import SearchResults from './components/SearchResults';
 import ErrorBoundary from './components/ErrorBoundary';
 import ButtonError from './components/ButtonError';
 
-type EmptyType = Record<string, never>;
-
 export interface IItem {
   url: string;
   name: string;
   orbital_period: number;
+  population: number;
 }
 
 interface IAppState {
   items: IItem[];
 }
 
-class App extends React.Component<EmptyType, IAppState> {
-  constructor(props: EmptyType) {
+class App extends React.Component<Record<string, never>, IAppState> {
+  constructor(props: Record<string, never>) {
     super(props);
     this.state = { items: [] };
   }
@@ -35,8 +34,10 @@ class App extends React.Component<EmptyType, IAppState> {
       <ErrorBoundary>
         <main>
           <header>
-            <SearchForm onSubmit={this.handleSubmit} />
-            <ButtonError />
+            <div className="header_content">
+              <SearchForm onSubmit={this.handleSubmit} />
+              <ButtonError />
+            </div>
           </header>
           <section>
             <SearchResults items={this.state.items} />

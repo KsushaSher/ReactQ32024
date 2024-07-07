@@ -1,21 +1,22 @@
 import React from 'react';
 
-interface ErrorBoundaryState {
+interface IProps {
+  children: React.ReactNode;
+}
+
+interface IState {
   hasError: boolean;
   error: Error | null;
   errorInfo: React.ErrorInfo | null;
 }
 
-class ErrorBoundary extends React.Component<
-  { children: React.ReactNode },
-  ErrorBoundaryState
-> {
-  constructor(props: { children: React.ReactNode }) {
+class ErrorBoundary extends React.Component<IProps, IState> {
+  constructor(props: IProps) {
     super(props);
     this.state = { hasError: false, error: null, errorInfo: null };
   }
 
-  static getDerivedStateFromError(error: Error): ErrorBoundaryState {
+  static getDerivedStateFromError(error: Error): IState {
     return { hasError: true, error, errorInfo: null };
   }
 
