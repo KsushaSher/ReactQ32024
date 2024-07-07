@@ -3,6 +3,8 @@ import './App.css';
 import SearchForm from './components/SearchForm';
 import React from 'react';
 import SearchResults from './components/SearchResults';
+import ErrorBoundary from './components/ErrorBoundary';
+import ButtonError from './components/ButtonError';
 
 type EmptyType = Record<string, never>;
 
@@ -30,14 +32,17 @@ class App extends React.Component<EmptyType, IAppState> {
 
   render(): ReactNode {
     return (
-      <main>
-        <header>
-          <SearchForm onSubmit={this.handleSubmit} />
-        </header>
-        <section>
-          <SearchResults items={this.state.items} />
-        </section>
-      </main>
+      <ErrorBoundary>
+        <main>
+          <header>
+            <SearchForm onSubmit={this.handleSubmit} />
+            <ButtonError />
+          </header>
+          <section>
+            <SearchResults items={this.state.items} />
+          </section>
+        </main>
+      </ErrorBoundary>
     );
   }
 }

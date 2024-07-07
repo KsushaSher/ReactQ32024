@@ -21,3 +21,6 @@ section {
 .item p {
   padding: 8px 0;
 }
+.buttonError {
+  margin-top: 10px;
+}
