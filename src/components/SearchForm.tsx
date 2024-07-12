@@ -1,17 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 interface IProps {
   onSubmit: (search: string) => void;
+  initialSearch: string;
 }
-const LS_SEARCH_UNIQ_KEY = 'KSU_APP_SEARCH';
-const SEARCH_FROM_LS = localStorage.getItem(LS_SEARCH_UNIQ_KEY) || '';
 
-function SearchForm({ onSubmit }: IProps) {
-  const [search, setSearch] = useState(SEARCH_FROM_LS);
-
-  useEffect(() => {
-    onSubmit(SEARCH_FROM_LS);
-  }, [onSubmit]);
+function SearchForm({ onSubmit, initialSearch }: IProps) {
+  const [search, setSearch] = useState(initialSearch);
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
@@ -20,7 +15,6 @@ function SearchForm({ onSubmit }: IProps) {
   const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     onSubmit(search);
-    localStorage.setItem(LS_SEARCH_UNIQ_KEY, search);
   };
 
   return (

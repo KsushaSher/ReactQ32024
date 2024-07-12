@@ -1,0 +1,1 @@
+export const LS_SEARCH_UNIQ_KEY = 'KSU_APP_SEARCH';
