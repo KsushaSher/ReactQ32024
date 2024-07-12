@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import './App.css';
 import SearchForm from './components/SearchForm';
-import SearchResults from './components/SearchResults';
+import CardList from './components/CardList';
 import ErrorBoundary from './components/ErrorBoundary';
 import ButtonError from './components/ButtonError';
 import { LS_SEARCH_UNIQ_KEY } from './constants';
@@ -42,7 +42,7 @@ function App() {
           </div>
         </header>
         <section>
-          <SearchResults items={items} />
+          <CardList items={items} />
         </section>
       </main>
     </ErrorBoundary>
