@@ -67,3 +67,28 @@ input {
 .item p {
   padding: 8px 0;
 }
+
+.error_page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  padding-top: 100px;
+  width: 960px;
+  height: 300px;
+  /* background-color: #9c9dad; */
+}
+
+.error_page h1 {
+  font-size: 3em;
+  font-weight: 500;
+}
+.error404 {
+  font-size: 9em;
+  font-weight: 800;
+}
+.error_text {
+  font-size: 2em;
+  font-weight: 500;
+}
