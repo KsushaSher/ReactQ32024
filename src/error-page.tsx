@@ -1,14 +1,6 @@
-import { Link, useRouteError } from 'react-router-dom';
-
-interface IError {
-  statusText?: string;
-  message?: string;
-}
+import { Link } from 'react-router-dom';
 
 export default function ErrorPage() {
-  const error = useRouteError() as IError | null;
-  console.error(error);
-
   return (
     <div id="error_page" className="error_page">
       <h1>Oops!</h1>

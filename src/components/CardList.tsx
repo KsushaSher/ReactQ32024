@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate, useSearchParams } from 'react-router-dom';
 import Card from './Card';
 import { IItem } from '../api';
 import Loader from './Loader';
@@ -9,9 +9,15 @@ interface IProps {
 }
 
 function CardList({ items, loading }: IProps) {
+  const navigate = useNavigate();
+  const [search] = useSearchParams();
+
+  const handleOnClick = () => {
+    navigate({ pathname: '/', search: search.toString() });
+  };
   return (
     <div className="right_and_left_section">
-      <div className="left_section_search_result">
+      <div className="left_section_search_result" onClick={handleOnClick}>
         {loading ? (
           <Loader />
         ) : (

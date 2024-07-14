@@ -17,6 +17,7 @@ function DetailedCard() {
   useEffect(() => {
     if (id) {
       setLoading(true);
+      setData(null);
       API.getPlanet(id).then(res => {
         setData(res);
         setLoading(false);
@@ -24,10 +25,17 @@ function DetailedCard() {
     }
   }, [id]);
 
-  if (loading) return <Loader />;
+  if (loading)
+    return (
+      <div className="item">
+        <Loader />
+      </div>
+    );
+
+  if (!data) return null;
 
   return (
-    <div className="item" key={data?.url}>
+    <div className="item">
       <p>name: {data?.name}</p>
       <p>orbital period: {data?.orbital_period}</p>
       <p>population: {data?.population}</p>
