@@ -10,7 +10,7 @@ function CardList({ items, loading }: IProps) {
   return (
     <div className="search_result">
       {loading ? (
-        'Loading...'
+        <span className="loader" />
       ) : (
         <>
           {items.length === 0 && 'Empty...'}

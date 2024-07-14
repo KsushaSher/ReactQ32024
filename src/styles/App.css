@@ -1,4 +1,4 @@
-header {
+/* header {
   background-color: rgb(208, 197, 233);
   padding: 24px 0;
 }
@@ -95,6 +95,13 @@ input {
   font-size: 2em;
   font-weight: 500;
 }
+.error_text_home {
+  font-size: 1.2em;
+  font-weight: 500;
+}
+.error_text_home:hover {
+  color: rgb(56, 45, 80);
+}
 
 .card {
   display: flex;
@@ -123,4 +130,4 @@ input {
   justify-content: flex-end;
   flex: 1 0 20%;
   width: 300px;
-}
+} */

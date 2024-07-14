@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useState } from 'react';
-import './App.css';
 import SearchForm from './components/SearchForm';
 import CardList from './components/CardList';
 import ErrorBoundary from './components/ErrorBoundary';

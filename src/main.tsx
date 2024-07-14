@@ -1,5 +1,6 @@
 import ReactDOM from 'react-dom/client';
-import './reset.css';
+import './styles/reset.css';
+import './styles/Styles.scss';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import ErrorPage from './error-page';
 import App from './App.tsx';
