@@ -1,7 +1,7 @@
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { API, IDetailItem } from '../api';
+import { API, IDetailItem } from '../../api';
 import { useEffect, useState } from 'react';
-import Loader from './Loader';
+import Loader from '../Loader';
 
 function DetailedCard() {
   const navigate = useNavigate();

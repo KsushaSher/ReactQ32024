@@ -21,8 +21,10 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+
+    /* Tests */
+    "types": ["vitest/globals"]
   },
-  "include": ["src", "tests/getTestAttrs.ts"],
-  "exclude": ["**/*/*.test.tsx"]
+  "include": ["tests", "**/*/*.tsx", "**/*/*.ts"]
 }

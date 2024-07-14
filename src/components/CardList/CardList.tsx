@@ -1,7 +1,7 @@
 import { Outlet, useNavigate, useSearchParams } from 'react-router-dom';
-import Card from './Card';
-import { IItem } from '../api';
-import Loader from './Loader';
+import Card from '../Card';
+import { IItem } from '../../api';
+import Loader from '../Loader';
 
 interface IProps {
   items: IItem[];

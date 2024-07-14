@@ -1,5 +1,6 @@
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { IItem } from '../api';
+import { IItem } from '../../api';
+import { getTestAttrs } from '../../../tests/getTestAttrs';
 
 interface IProps {
   item: IItem;
@@ -22,7 +23,7 @@ function Card({ item }: IProps) {
   };
 
   return (
-    <div className="item" key={item.url}>
+    <div {...getTestAttrs({ id: 'card' })} className="item">
       <p>name: {item.name}</p>
       <p>orbital period: {item.orbital_period}</p>
       <p>population: {item.population}</p>
