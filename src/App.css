@@ -35,6 +35,19 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.button_close_open {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.2em 0.8em;
+  font-size: 1em;
+  font-weight: 500;
+  width: 100%;
+  background-color: rgb(107, 107, 130);
+  cursor: pointer;
+  transition: border-color 0.25s;
+  color: rgb(54, 54, 54);
+}
+
 input {
   border-radius: 8px;
   border: 1px solid #646cff;
@@ -56,16 +69,6 @@ input {
   margin: auto;
   width: 960px;
   padding: 32px 0;
-}
-
-.item {
-  background-color: rgb(128, 128, 183);
-  padding: 10px;
-  border-radius: 5px;
-}
-
-.item p {
-  padding: 8px 0;
 }
 
 .error_page {
@@ -91,4 +94,33 @@ input {
 .error_text {
   font-size: 2em;
   font-weight: 500;
+}
+
+.card {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.item {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: rgb(128, 128, 183);
+  padding: 10px;
+  border-radius: 5px;
+  height: 145px;
+  flex: 1 0 20%;
+}
+
+.item p {
+  padding: 8px 0;
+}
+
+.detailed_card {
+  display: flex;
+  justify-content: flex-end;
+  flex: 1 0 20%;
+  width: 300px;
 }

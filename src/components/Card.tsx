@@ -10,18 +10,20 @@ function Card({ item }: IProps) {
   const [isOpen, setIsOpen] = useState(false);
   const handleClick = () => {
     setIsOpen(prev => !prev);
-    console.log('click more button');
   };
+
   return (
-    <div>
+    <div className="card">
       <div className="item" key={item.url}>
         <p>name: {item.name}</p>
         <p>orbital period: {item.orbital_period}</p>
         <p>population: {item.population}</p>
-        {isOpen && <DetailedCard item={item} />}
+        <button onClick={handleClick} className="button_close_open">
+          {isOpen ? 'close detailed card' : ' open detailed card'}
+        </button>
       </div>
-      <div>
-        <button onClick={handleClick}>{isOpen ? 'close' : 'open'}</button>
+      <div className="detailed_card">
+        {isOpen && <DetailedCard item={item} />}
       </div>
     </div>
   );
