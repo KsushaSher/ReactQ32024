@@ -1,16 +1,17 @@
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { API, IDetailItem } from '../api';
 import { useEffect, useState } from 'react';
 import Loader from './Loader';
 
 function DetailedCard() {
-  const { id } = useParams();
   const navigate = useNavigate();
   const [search] = useSearchParams();
+  const id = search.get('id');
   const [data, setData] = useState<IDetailItem | null>(null);
   const [loading, setLoading] = useState(false);
 
   const handleClick = () => {
+    search.delete('id');
     navigate({ pathname: '/', search: search.toString() });
   };
 

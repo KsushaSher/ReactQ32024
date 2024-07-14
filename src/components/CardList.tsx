@@ -13,8 +13,10 @@ function CardList({ items, loading }: IProps) {
   const [search] = useSearchParams();
 
   const handleOnClick = () => {
+    search.delete('id');
     navigate({ pathname: '/', search: search.toString() });
   };
+
   return (
     <div className="right_and_left_section">
       <div className="left_section_search_result" onClick={handleOnClick}>

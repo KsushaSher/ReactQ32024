@@ -7,7 +7,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Planets />}>
-        <Route path="/details/:id" element={<DetailedCard />} />
+        <Route path="details" element={<DetailedCard />} />
       </Route>
       <Route path="*" element={<ErrorPage />} />
     </Routes>

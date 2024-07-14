@@ -15,7 +15,10 @@ function Card({ item }: IProps) {
       .split('/')
       .filter(i => i)
       .pop();
-    navigate({ pathname: `/details/${id}`, search: search.toString() });
+    if (id) {
+      search.set('id', id);
+      navigate({ pathname: `/details`, search: search.toString() });
+    }
   };
 
   return (
