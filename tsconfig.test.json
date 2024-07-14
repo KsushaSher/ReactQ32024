@@ -26,5 +26,5 @@
     /* Tests */
     "types": ["vitest/globals"]
   },
-  "include": ["tests", "**/*/*.tsx", "**/*/*.ts"]
+  "include": ["tests", "vitest.setup.ts", "**/*/*.tsx", "**/*/*.ts"]
 }

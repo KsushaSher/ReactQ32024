@@ -5,7 +5,7 @@ import Loader from '../Loader';
 
 interface IProps {
   items: IItem[];
-  loading: boolean;
+  loading?: boolean;
 }
 
 function CardList({ items, loading }: IProps) {

@@ -10,11 +10,19 @@ const CARDS_MOCK: IItem[] = [
 ];
 
 describe('CardList Component', () => {
-  test('renders the correct number of Card components', () => {
-    render(<CardList items={CARDS_MOCK} loading={false} />);
-
+  it('renders the correct number of Card components', () => {
+    render(<CardList items={CARDS_MOCK} />);
     const cardElements = screen.getAllByTestId('card');
-
     expect(cardElements).toHaveLength(CARDS_MOCK.length);
+  });
+
+  it('should display a message when there are no cards', () => {
+    render(<CardList items={[]} />);
+    expect(screen.getByText('Empty...')).toBeInTheDocument();
+  });
+
+  it('should display a Loader when loading', () => {
+    render(<CardList items={[]} loading />);
+    expect(screen.getAllByTestId('loader')).toHaveLength(1);
   });
 });

@@ -24,9 +24,13 @@ function Card({ item }: IProps) {
 
   return (
     <div {...getTestAttrs({ id: 'card' })} className="item">
-      <p>name: {item.name}</p>
-      <p>orbital period: {item.orbital_period}</p>
-      <p>population: {item.population}</p>
+      <p {...getTestAttrs({ id: 'card-name' })}>name: {item.name}</p>
+      <p {...getTestAttrs({ id: 'card-orbital_period' })}>
+        orbital period: {item.orbital_period}
+      </p>
+      <p {...getTestAttrs({ id: 'card-population' })}>
+        population: {item.population}
+      </p>
       <button onClick={handleClick} className="button_close_open">
         Open detailed card
       </button>
