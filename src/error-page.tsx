@@ -1,4 +1,4 @@
-import { useRouteError } from 'react-router-dom';
+import { Link, useRouteError } from 'react-router-dom';
 
 interface IError {
   statusText?: string;
@@ -15,7 +15,7 @@ export default function ErrorPage() {
       <div className="error404">404</div>
       <div className="error_text">Такой страницы нет</div>
       <div className="error_text_home">
-        <a href="/">Вернуться на главную</a>
+        <Link to="/">Вернуться на главную</Link>
       </div>
     </div>
   );
