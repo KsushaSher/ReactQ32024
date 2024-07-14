@@ -24,5 +24,6 @@ dist-ssr
 *.sw?
 
 draft.jsx
+coverage
 
 
