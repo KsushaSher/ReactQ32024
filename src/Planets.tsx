@@ -8,6 +8,7 @@ import { useLocalStorageState } from './useLocalStorage';
 import Pagination from './components/Pagination';
 import { useSearchParams } from 'react-router-dom';
 import { API } from './api';
+import { planetsApi } from './store/services/planetsApi';
 
 function Planets() {
   const [items, setItems] = useState([]);
@@ -16,6 +17,10 @@ function Planets() {
   const [searchLS, setSearchLS] = useLocalStorageState(LS_SEARCH_UNIQ_KEY);
   const [searchParams, setSearchParams] = useSearchParams();
   const currentPage = searchParams.get('page');
+  const { data, error, isLoading } = planetsApi.useGetPlanetsQuery({
+    page: currentPage,
+    search: searchLS,
+  });
 
   const handleSubmit = useCallback(
     async (search: string) => {

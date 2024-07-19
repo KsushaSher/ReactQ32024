@@ -18,7 +18,7 @@ export interface IDetailItem {
   surface_water: number;
 }
 
-interface IApiGetPlanetsVars {
+export interface IApiGetPlanetsVars {
   search?: string;
   page?: string | null;
 }
