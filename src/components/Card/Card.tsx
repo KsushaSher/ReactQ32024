@@ -31,7 +31,11 @@ function Card({ item }: IProps) {
       <p {...getTestAttrs({ id: 'card-population' })}>
         population: {item.population}
       </p>
-      <button onClick={handleClick} className="button_close_open">
+      <button
+        {...getTestAttrs({ id: 'card-button' })}
+        onClick={handleClick}
+        className="button_close_open"
+      >
         Open detailed card
       </button>
     </div>
