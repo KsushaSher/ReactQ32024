@@ -24,13 +24,16 @@ function Card({ item }: IProps) {
 
   return (
     <div {...getTestAttrs({ id: 'card' })} className="item">
-      <p {...getTestAttrs({ id: 'card-name' })}>name: {item.name}</p>
-      <p {...getTestAttrs({ id: 'card-orbital_period' })}>
-        orbital period: {item.orbital_period}
-      </p>
-      <p {...getTestAttrs({ id: 'card-population' })}>
-        population: {item.population}
-      </p>
+      <div>
+        <p {...getTestAttrs({ id: 'card-name' })}>name: {item.name}</p>
+        <p {...getTestAttrs({ id: 'card-orbital_period' })}>
+          orbital period: {item.orbital_period}
+        </p>
+        <p {...getTestAttrs({ id: 'card-population' })}>
+          population: {item.population}
+        </p>
+      </div>
+      <input type="checkbox" className="checkboxCard" />
       <button
         {...getTestAttrs({ id: 'card-button' })}
         onClick={handleClick}
