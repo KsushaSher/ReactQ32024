@@ -1,32 +1,21 @@
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { API, IDetailItem } from '../../api';
-import { useEffect, useState } from 'react';
 import Loader from '../Loader';
+import { planetsApi } from '../../store/services/planetsApi';
 
 function DetailedCard() {
   const navigate = useNavigate();
   const [search] = useSearchParams();
   const id = search.get('id');
-  const [data, setData] = useState<IDetailItem | null>(null);
-  const [loading, setLoading] = useState(false);
+  const { data, isFetching } = planetsApi.useGetPlanetQuery({
+    id,
+  });
 
   const handleClick = () => {
     search.delete('id');
     navigate({ pathname: '/', search: search.toString() });
   };
 
-  useEffect(() => {
-    if (id) {
-      setLoading(true);
-      setData(null);
-      API.getPlanet(id).then(res => {
-        setData(res);
-        setLoading(false);
-      });
-    }
-  }, [id]);
-
-  if (loading)
+  if (isFetching)
     return (
       <div className="item">
         <Loader />

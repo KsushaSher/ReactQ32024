@@ -4,7 +4,7 @@ import { IItem } from '../../api';
 import Loader from '../Loader';
 
 interface IProps {
-  items: IItem[];
+  items?: IItem[];
   loading?: boolean;
 }
 
@@ -24,10 +24,8 @@ function CardList({ items, loading }: IProps) {
           <Loader />
         ) : (
           <>
-            {items.length === 0 && 'Empty...'}
-            {items.map(item => (
-              <Card item={item} key={item.url} />
-            ))}
+            {!items?.length && 'Empty...'}
+            {items?.map(item => <Card item={item} key={item.url} />)}
           </>
         )}
       </div>

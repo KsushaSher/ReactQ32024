@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback } from 'react';
 import SearchForm from './components/SearchForm';
 import CardList from './components/CardList';
 import ErrorBoundary from './components/ErrorBoundary';
@@ -7,42 +7,25 @@ import { ITEMS_PER_PAGE, LS_SEARCH_UNIQ_KEY } from './constants';
 import { useLocalStorageState } from './useLocalStorage';
 import Pagination from './components/Pagination';
 import { useSearchParams } from 'react-router-dom';
-import { API } from './api';
 import { planetsApi } from './store/services/planetsApi';
 
 function Planets() {
-  const [items, setItems] = useState([]);
-  const [count, setCount] = useState(0);
-  const [loading, setLoading] = useState(false);
   const [searchLS, setSearchLS] = useLocalStorageState(LS_SEARCH_UNIQ_KEY);
   const [searchParams, setSearchParams] = useSearchParams();
   const currentPage = searchParams.get('page');
-  const { data, error, isLoading } = planetsApi.useGetPlanetsQuery({
+  const { data, isFetching } = planetsApi.useGetPlanetsQuery({
     page: currentPage,
     search: searchLS,
   });
+  const { results, count = 0 } = data || {};
 
   const handleSubmit = useCallback(
-    async (search: string) => {
-      setLoading(true);
+    (search: string) => {
       setSearchParams({ page: '1' });
-      const res = await API.getPlanets({ search });
-      setLoading(false);
-      setItems(res.results);
-      setCount(res.count);
       setSearchLS(search);
     },
     [setSearchLS, setSearchParams],
   );
-
-  useEffect(() => {
-    setLoading(true);
-    API.getPlanets({ page: currentPage, search: searchLS }).then(res => {
-      setLoading(false);
-      setItems(res.results);
-      setCount(res.count);
-    });
-  }, [currentPage, searchLS]);
 
   return (
     <ErrorBoundary>
@@ -54,7 +37,7 @@ function Planets() {
           </div>
         </header>
         <section>
-          <CardList items={items} loading={loading} />
+          <CardList items={results} loading={isFetching} />
           <Pagination totalPages={Math.ceil(count / ITEMS_PER_PAGE)} />
         </section>
       </main>
