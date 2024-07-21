@@ -1,26 +1,37 @@
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { IItem } from '../../api';
 import { getTestAttrs } from '../../../tests/getTestAttrs';
+import { useAppDispatch, useAppSelector } from '../../store/hook';
+import { setSelected } from '../../store/planetsSlice';
+import { getIsSelected } from '../../store/selectos';
 
 interface IProps {
   item: IItem;
 }
 
+const extractIdFromUrl = (url: string) =>
+  url
+    .split('/')
+    .filter(i => i)
+    .pop() || '';
+
 function Card({ item }: IProps) {
+  const id = extractIdFromUrl(item.url);
   const navigate = useNavigate();
   const [search] = useSearchParams();
+  const dispatch = useAppDispatch();
+  const isSelected = useAppSelector(s => getIsSelected(s, id));
+  console.log({ id, isSelected });
 
   const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    const id = item.url
-      .split('/')
-      .filter(i => i)
-      .pop();
     if (id) {
       search.set('id', id);
       navigate({ pathname: `/details`, search: search.toString() });
     }
   };
+
+  const handleToggle = () => dispatch(setSelected(id));
 
   return (
     <div {...getTestAttrs({ id: 'card' })} className="item">
@@ -33,7 +44,13 @@ function Card({ item }: IProps) {
           population: {item.population}
         </p>
       </div>
-      <input type="checkbox" className="checkboxCard" />
+      <input
+        type="checkbox"
+        className="checkboxCard"
+        onChange={handleToggle}
+        checked={isSelected}
+        onClick={e => e.stopPropagation()}
+      />
       <button
         {...getTestAttrs({ id: 'card-button' })}
         onClick={handleClick}

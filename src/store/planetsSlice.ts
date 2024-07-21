@@ -1,36 +1,30 @@
-import { createSlice /* PayloadAction */ } from '@reduxjs/toolkit';
-import { IItem } from '../api';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 type PlanetsState = {
-  list: IItem[];
+  selected: string[];
 };
 
 const initialState: PlanetsState = {
-  list: [],
+  selected: [],
 };
 
 const planetSlice = createSlice({
   name: 'planets',
   initialState,
   reducers: {
-    // addTodo(state, action: PayloadAction<string>) {
-    //   state.list.push({
-    //     id: new Date().toISOString(),
-    //     text: action.payload,
-    //     completed: false,
-    //   });
-    // },
-    // toggleTodoComplete(state, action: PayloadAction<string>) {
-    //   const toggledTodo = state.list.find(todo => todo.id === action.payload);
-    //   if (toggledTodo) {
-    //     toggledTodo.completed = !toggledTodo.completed;
-    //   }
-    // },
-    // removeTodo(state, action: PayloadAction<string>) {
-    //   state.list = state.list.filter(todo => todo.id !== action.payload);
-    // },
+    setSelected(state, action: PayloadAction<string>) {
+      const id = action.payload;
+      if (state.selected.includes(id)) {
+        state.selected = state.selected.filter(item => item !== id);
+      } else {
+        state.selected.push(id);
+      }
+    },
+    reset() {
+      return initialState;
+    },
   },
 });
 
-// export const {} = planetSlice.actions; //actions создаются автоматически, их нужно только через деструктуризацию достать как из объекта
+export const { setSelected, reset } = planetSlice.actions; //actions создаются автоматически, их нужно только через деструктуризацию достать как из объекта
 export default planetSlice.reducer;

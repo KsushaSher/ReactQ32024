@@ -7,7 +7,8 @@ import { ITEMS_PER_PAGE, LS_SEARCH_UNIQ_KEY } from './constants';
 import { useLocalStorageState } from './useLocalStorage';
 import Pagination from './components/Pagination';
 import { useSearchParams } from 'react-router-dom';
-import { planetsApi } from './store/services/planetsApi';
+import { planetsApi } from './store/planetsApi';
+import FlyoutElement from './components/ FlyoutElement/ FlyoutEement';
 
 function Planets() {
   const [searchLS, setSearchLS] = useLocalStorageState(LS_SEARCH_UNIQ_KEY);
@@ -40,6 +41,7 @@ function Planets() {
           <CardList items={results} loading={isFetching} />
           <Pagination totalPages={Math.ceil(count / ITEMS_PER_PAGE)} />
         </section>
+        <FlyoutElement />
       </main>
     </ErrorBoundary>
   );

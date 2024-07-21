@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import planetsReducer from './planetsSlice';
-import { planetsApi } from './services/planetsApi';
+import { planetsApi } from './planetsApi';
 
 // export const store = configureStore({
 //   reducer: {
@@ -19,6 +19,9 @@ const store = configureStore({
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware().concat(planetsApi.middleware),
+  // reducer: {
+  //   chacked: chackedReducer,
+  // },
 });
 
 export default store;

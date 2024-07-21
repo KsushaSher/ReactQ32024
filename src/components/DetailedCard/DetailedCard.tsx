@@ -1,6 +1,6 @@
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import Loader from '../Loader';
-import { planetsApi } from '../../store/services/planetsApi';
+import { planetsApi } from '../../store/planetsApi';
 
 function DetailedCard() {
   const navigate = useNavigate();
