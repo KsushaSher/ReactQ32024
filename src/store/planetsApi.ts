@@ -24,18 +24,8 @@ export const planetsApi = createApi({
     getPlanet: builder.query<IDetailItem, IApiGetPlanetVars>({
       query: ({ id }) => `/${id}/`,
     }),
+    // getCardDetailedById: builder.query<IDetailItem, IApiGetPlanetVars>({
+    //   query: ({ id }) => `/${id}/`,
+    // }),
   }),
 });
-
-// export const API = {
-//     getPlanets: async ({ search = '', page }: IApiGetPlanetsVars) => {
-//       return fetch(
-//         `https://swapi.dev/api/planets?page=${page || 1}&search=${search}`,
-//       ).then(res => res.json());
-//     },
-//     getPlanet: async (id: string) => {
-//       return fetch(`https://swapi.dev/api/planets/${id}/`).then(res =>
-//         res.json(),
-//       );
-//     },
-//   };

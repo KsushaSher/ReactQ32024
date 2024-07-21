@@ -1,23 +1,30 @@
 import { useAppDispatch, useAppSelector } from '../../store/hook';
+import { planetsApi } from '../../store/planetsApi';
 import { reset } from '../../store/planetsSlice';
-import { getCount } from '../../store/selectos';
+import { getArraySelectedId, getCount } from '../../store/selectos';
 
 const FlyoutElement = () => {
   const dispatch = useAppDispatch();
-  const count = useAppSelector(s => getCount(s));
+  const count = useAppSelector(getCount);
+  const arrayId = useAppSelector(getArraySelectedId);
+  const [getPlanet] = planetsApi.useLazyGetPlanetQuery();
 
   const handleClickReset = () => {
     dispatch(reset());
   };
 
-  const handleClickSaved = () => {};
+  const handleClickDownload = async () => {
+    const promises = arrayId.map(id => getPlanet({ id }));
+    const res = await Promise.all(promises);
+    console.log(res);
+  };
 
   if (count > 0) {
     return (
       <div>
         <p> Выбрано {count} элемент(ов)</p>
         <button onClick={handleClickReset}>Отменить выбор всех</button>
-        <button onClick={handleClickSaved}>Загрузить</button>
+        <button onClick={handleClickDownload}>Загрузить</button>
       </div>
     );
   } else {
