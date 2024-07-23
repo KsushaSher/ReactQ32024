@@ -17,7 +17,7 @@ const Pagination = ({ totalPages }: IProps) => {
   if (totalPages < 1) return null;
 
   return (
-    <div>
+    <div className="pagination">
       <button
         onClick={() => handlePageChange(currentPage - 1)}
         disabled={currentPage === 1}

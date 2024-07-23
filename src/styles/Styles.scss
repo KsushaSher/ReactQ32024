@@ -5,6 +5,7 @@ header {
   padding: 24px 0;
 }
 section {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,6 +16,15 @@ section {
   gap: 16px;
   max-width: 960px;
   margin: auto;
+  div {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.dark_light_button {
+  fill: #5a5959;
+  padding-right: 40px;
 }
 
 form {
@@ -140,7 +150,7 @@ input {
   display: flex;
   justify-content: space-between;
   gap: 10px;
-  padding: 32px 0;
+  padding: 38px 0;
   width: 960px;
   margin: auto;
   .left_section_search_result {
@@ -163,7 +173,7 @@ input {
       .checkboxCard {
         flex: 0 1 auto;
         width: 20px;
-        height: 20;
+        height: 20px;
         border-radius: 8px;
         border: 1px solid #646cff;
         align-self: flex-start;
@@ -223,5 +233,45 @@ input {
         flex: 1 0 100%;
       }
     }
+  }
+}
+
+.pagination {
+  padding-bottom: 38px;
+  span {
+    flex: 1 1 100%;
+    padding: 0 15px;
+    color: #ae9fcc;
+  }
+}
+
+.flyout_element {
+  position: absolute;
+  width: 400px;
+  z-index: 2;
+  bottom: 14px;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  background-color: #3b2b99;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 2px 2px 2px 1px rgba(24, 24, 28, 0.23);
+  p {
+    color: #0b0332;
+    flex: 1 0 100%;
+    font-size: 1.15em;
+  }
+  .click_reset {
+    flex: 1 0 40%;
+    background-color: #3d3d3d;
+    color: rgb(166, 166, 166);
+  }
+  .click_download {
+    flex: 1 0 40%;
+    background-color: #3d3d3d;
+    color: rgb(232, 120, 40);
   }
 }

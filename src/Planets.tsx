@@ -9,6 +9,7 @@ import Pagination from './components/Pagination';
 import { useSearchParams } from 'react-router-dom';
 import { planetsApi } from './store/planetsApi';
 import FlyoutElement from './components/ FlyoutElement/ FlyoutEement';
+import DarkLightButton from './components/DarkLightButton/DarkLightButton';
 
 function Planets() {
   const [searchLS, setSearchLS] = useLocalStorageState(LS_SEARCH_UNIQ_KEY);
@@ -34,14 +35,17 @@ function Planets() {
         <header>
           <div className="header_content">
             <SearchForm onSubmit={handleSubmit} initialSearch={searchLS} />
-            <ButtonError />
+            <div>
+              <DarkLightButton />
+              <ButtonError />
+            </div>
           </div>
         </header>
         <section>
           <CardList items={results} loading={isFetching} />
           <Pagination totalPages={Math.ceil(count / ITEMS_PER_PAGE)} />
+          <FlyoutElement />
         </section>
-        <FlyoutElement />
       </main>
     </ErrorBoundary>
   );
