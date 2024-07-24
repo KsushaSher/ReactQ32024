@@ -1,12 +1,14 @@
 import React from 'react';
 
+export type ThemeType = 'dark' | 'light';
+
 export interface IThemeContext {
-  darkTheme: boolean;
+  theme: ThemeType;
   toggleTheme: () => void;
 }
 
 const DEFAULT_CONTEXT: IThemeContext = {
-  darkTheme: false,
+  theme: 'dark',
   toggleTheme: () => {
     throw new Error('NO CONTEXT');
   },

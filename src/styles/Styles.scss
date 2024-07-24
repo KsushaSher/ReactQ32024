@@ -1,8 +1,38 @@
-$primary-color: rgb(208, 197, 233);
+.dark {
+  --background-color-section: rgb(73, 73, 160);
+  --background-color-header: rgb(128, 128, 183);
+  // --background-color-header: rgb(208, 197, 233);
+  --background-color-item: rgb(128, 128, 183);
+  --background-color-flyout-element: #3b2b99;
+  --color-border: #5e2b99;
+  --color-text-main: #fff;
+  --color-svg: #3d3d3d;
+  --color-button: #5a5959;
+}
 
+.light {
+  --background-color-section: #b5b9ff;
+  --background-color-header: rgb(173, 173, 205);
+  --background-color-item: rgb(173, 173, 205);
+  --background-color-flyout-element: #7569b5;
+  --color-border: #917bac;
+  --color-text-main: #000;
+  --color-svg: #ffffff;
+  --color-button: #5a5959;
+}
+
+#root,
+main {
+  min-height: 100vh;
+  background-color: var(--background-color-section);
+}
 header {
-  background-color: $primary-color;
+  background-color: var(--background-color-header);
   padding: 24px 0;
+  color: var(--color-text-main);
+}
+p {
+  color: var(--color-text-main);
 }
 section {
   position: relative;
@@ -23,7 +53,7 @@ section {
 }
 
 .dark_light_button {
-  fill: #5a5959;
+  fill: var(--color-svg);
   padding-right: 40px;
 }
 
@@ -38,10 +68,10 @@ button {
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
-  background-color: #5a5959;
+  background-color: var(--color-button);
   cursor: pointer;
   transition: border-color 0.25s;
-  color: white;
+  color: var(--color-text-main);
 }
 button:hover {
   border-color: #646cff;
@@ -74,7 +104,6 @@ input {
   padding-top: 100px;
   width: 960px;
   height: 300px;
-  /* background-color: #9c9dad; */
 }
 
 .error_page h1 {
@@ -154,7 +183,7 @@ input {
   width: 960px;
   margin: auto;
   .left_section_search_result {
-    border: 5px solid #5e2b99;
+    border: 5px solid var(--color-border);
     padding: 5px;
     border-radius: 10px;
     display: flex;
@@ -167,7 +196,7 @@ input {
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
-      background-color: rgb(128, 128, 183);
+      background-color: var(--background-color-item);
       padding: 10px;
       border-radius: 5px;
       .checkboxCard {
@@ -204,14 +233,14 @@ input {
     display: flex;
     flex-direction: column;
     flex: 1 0 20%;
-    border: 5px solid #5e2b99;
+    border: 5px solid var(--color-border);
     border-radius: 10px;
     padding: 5px;
     .item {
       box-sizing: border-box;
       flex-direction: row;
       flex-wrap: wrap;
-      background-color: rgb(128, 128, 183);
+      background-color: var(--background-color-item);
       padding: 10px;
       border-radius: 5px;
       position: sticky;
@@ -241,10 +270,11 @@ input {
   span {
     flex: 1 1 100%;
     padding: 0 15px;
-    color: #ae9fcc;
+    color: #7b6d97;
   }
 }
 
+// start flyout element
 .flyout_element {
   position: absolute;
   width: 400px;
@@ -255,7 +285,7 @@ input {
   align-items: center;
   flex-wrap: wrap;
   gap: 10px;
-  background-color: #3b2b99;
+  background-color: var(--background-color-flyout-element);
   border-radius: 8px;
   padding: 10px;
   box-shadow: 2px 2px 2px 1px rgba(24, 24, 28, 0.23);
@@ -275,3 +305,4 @@ input {
     color: rgb(232, 120, 40);
   }
 }
+// end flyout element

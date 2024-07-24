@@ -2,18 +2,20 @@ import { Route, Routes } from 'react-router-dom';
 import ErrorPage from './error-page';
 import DetailedCard from './components/DetailedCard';
 import Planets from './Planets';
-import ThemeProvider from './components/Context';
+import { useTheme } from './components/Context/hooks';
 
 function App() {
+  const theme = useTheme();
+
   return (
-    <ThemeProvider>
+    <main className={theme}>
       <Routes>
         <Route path="/" element={<Planets />}>
           <Route path="details" element={<DetailedCard />} />
         </Route>
         <Route path="*" element={<ErrorPage />} />
       </Routes>
-    </ThemeProvider>
+    </main>
   );
 }
 
