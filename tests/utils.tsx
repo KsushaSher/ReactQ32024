@@ -1,0 +1,16 @@
+import { render } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+import store from '../src/store/store';
+
+export const renderWithEnv = (ui: React.ReactNode, { route = '/' } = {}) => {
+  window.history.pushState({}, 'Test page', route);
+
+  return render(ui, {
+    wrapper: ({ children }) => (
+      <Provider store={store}>
+        <BrowserRouter>{children}</BrowserRouter>
+      </Provider>
+    ),
+  });
+};

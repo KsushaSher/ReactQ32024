@@ -24,8 +24,5 @@ export const planetsApi = createApi({
     getPlanet: builder.query<IDetailItem, IApiGetPlanetVars>({
       query: ({ id }) => `/${id}/`,
     }),
-    // getCardDetailedById: builder.query<IDetailItem, IApiGetPlanetVars>({
-    //   query: ({ id }) => `/${id}/`,
-    // }),
   }),
 });

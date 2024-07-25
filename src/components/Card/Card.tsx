@@ -3,7 +3,7 @@ import { IItem } from '../../api';
 import { getTestAttrs } from '../../../tests/getTestAttrs';
 import { useAppDispatch, useAppSelector } from '../../store/hook';
 import { setSelected } from '../../store/planetsSlice';
-import { getIsSelected } from '../../store/selectos';
+import { getIsSelected } from '../../store/selectors';
 // import { useTheme } from '../Context/hooks';
 
 interface IProps {
@@ -22,7 +22,7 @@ function Card({ item }: IProps) {
   const [search] = useSearchParams();
   const dispatch = useAppDispatch();
   const isSelected = useAppSelector(s => getIsSelected(s, id));
-  console.log({ id, isSelected });
+  // console.log({ id, isSelected });
   // const theme = useTheme();
 
   // themeStyles(theme)

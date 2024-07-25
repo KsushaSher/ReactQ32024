@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react';
 import CardList from './CardList';
 import { IItem } from '../../api';
-import { renderWithRouter } from '../../../tests/utils';
+import { renderWithEnv } from '../../../tests/utils';
 
 const CARDS_MOCK: IItem[] = [
   { name: '1', orbital_period: 1, population: 1, url: '1' },
@@ -11,18 +11,18 @@ const CARDS_MOCK: IItem[] = [
 
 describe('CardList Component', () => {
   it('renders the correct number of Card components', () => {
-    renderWithRouter(<CardList items={CARDS_MOCK} />);
+    renderWithEnv(<CardList items={CARDS_MOCK} />);
     const cardElements = screen.getAllByTestId('card');
     expect(cardElements).toHaveLength(CARDS_MOCK.length);
   });
 
   it('should display a message when there are no cards', () => {
-    renderWithRouter(<CardList items={[]} />);
+    renderWithEnv(<CardList items={[]} />);
     expect(screen.getByText('Empty...')).toBeInTheDocument();
   });
 
   it('should display a Loader when loading', () => {
-    renderWithRouter(<CardList items={[]} loading />);
+    renderWithEnv(<CardList items={[]} loading />);
     expect(screen.getAllByTestId('loader')).toHaveLength(1);
   });
 });

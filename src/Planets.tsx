@@ -35,7 +35,7 @@ function Planets() {
         <header>
           <div className="header_content">
             <SearchForm onSubmit={handleSubmit} initialSearch={searchLS} />
-            <div>
+            <div className="header_right_side">
               <DarkLightButton />
               <ButtonError />
             </div>

@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from '../../store/hook';
 import { planetsApi } from '../../store/planetsApi';
 import { reset } from '../../store/planetsSlice';
-import { getArraySelectedId, getCount } from '../../store/selectos';
+import { getArraySelectedId, getCount } from '../../store/selectors';
 import Papa from 'papaparse';
 
 const FlyoutElement = () => {
@@ -17,7 +17,7 @@ const FlyoutElement = () => {
   const handleClickDownload = async () => {
     const promises = arrayId.map(id => getPlanet({ id }));
     const res = await Promise.all(promises);
-    console.log('res:', res);
+    // console.log('res:', res);
 
     const csvFile = res.map(item => ({
       name: item.data?.name,

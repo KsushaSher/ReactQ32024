@@ -1,10 +1,10 @@
-import { fireEvent, screen } from '@testing-library/react';
+import { fireEvent, /* render, */ screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { describe, it, expect } from 'vitest';
 import Card from './Card';
 import { IItem } from '../../api';
-import { render, renderWithRouter } from '../../../tests/utils';
-import { MemoryRouter, Route, Routes } from 'react-router-dom';
+import { renderWithEnv } from '../../../tests/utils';
+import { /* MemoryRouter, */ Route, Routes } from 'react-router-dom';
 
 const ITEM_MOCK: IItem = {
   name: 'CARD_NAME',
@@ -15,19 +15,17 @@ const ITEM_MOCK: IItem = {
 
 describe('Card Component', () => {
   it('should display the card content', () => {
-    renderWithRouter(<Card item={ITEM_MOCK} />);
+    renderWithEnv(<Card item={ITEM_MOCK} />);
     expect(screen.getByTestId('card-name')).toBeInTheDocument();
     expect(screen.getByTestId('card-orbital_period')).toBeInTheDocument();
     expect(screen.getByTestId('card-population')).toBeInTheDocument();
   });
   it('should open a detailed card component when clicked', async () => {
-    render(
-      <MemoryRouter initialEntries={['/']}>
-        <Routes>
-          <Route path="/" element={<Card item={ITEM_MOCK} />} />
-          <Route path="/details" element={<div>Details Page</div>} />
-        </Routes>
-      </MemoryRouter>,
+    renderWithEnv(
+      <Routes>
+        <Route path="/" element={<Card item={ITEM_MOCK} />} />
+        <Route path="/details" element={<div>Details Page</div>} />
+      </Routes>,
     );
 
     const button = screen.getByTestId('card-button');
