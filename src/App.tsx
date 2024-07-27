@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import ErrorPage from './error-page';
 import DetailedCard from './components/DetailedCard';
-import Planets from './Planets';
+import Planets from './components/Planets/Planets';
 import { useTheme } from './components/Context/hooks';
 
 function App() {

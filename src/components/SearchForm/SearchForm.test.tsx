@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import SearchForm from './SearchForm';
 import { LS_SEARCH_UNIQ_KEY } from '../../constants';
 
-describe('CardList Component', () => {
+describe('SearchForm Component', () => {
   it('should save the entered value in local storage when the "Search" button is pressed', () => {
     const handleOnSubmit = (search: string) => {
       localStorage.setItem(LS_SEARCH_UNIQ_KEY, search);

@@ -1,15 +1,15 @@
 import { useCallback } from 'react';
-import SearchForm from './components/SearchForm';
-import CardList from './components/CardList';
-import ErrorBoundary from './components/ErrorBoundary';
-import ButtonError from './components/ButtonError';
-import { ITEMS_PER_PAGE, LS_SEARCH_UNIQ_KEY } from './constants';
-import { useLocalStorageState } from './useLocalStorage';
-import Pagination from './components/Pagination';
+import SearchForm from '../SearchForm';
+import CardList from '../CardList';
+import ErrorBoundary from '../ErrorBoundary';
+import ButtonError from '../ButtonError';
+import { ITEMS_PER_PAGE, LS_SEARCH_UNIQ_KEY } from '../../constants';
+import { useLocalStorageState } from '../../useLocalStorage';
+import Pagination from '../Pagination';
 import { useSearchParams } from 'react-router-dom';
-import { planetsApi } from './store/planetsApi';
-import FlyoutElement from './components/FlyoutElement';
-import DarkLightButton from './components/DarkLightButton';
+import { planetsApi } from '../../store/planetsApi';
+import FlyoutElement from '../FlyoutElement';
+import DarkLightButton from '../DarkLightButton';
 
 function Planets() {
   const [searchLS, setSearchLS] = useLocalStorageState(LS_SEARCH_UNIQ_KEY);
