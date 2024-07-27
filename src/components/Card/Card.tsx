@@ -4,7 +4,6 @@ import { getTestAttrs } from '../../../tests/getTestAttrs';
 import { useAppDispatch, useAppSelector } from '../../store/hook';
 import { setSelected } from '../../store/planetsSlice';
 import { getIsSelected } from '../../store/selectors';
-// import { useTheme } from '../Context/hooks';
 
 interface IProps {
   item: IItem;
@@ -22,10 +21,6 @@ function Card({ item }: IProps) {
   const [search] = useSearchParams();
   const dispatch = useAppDispatch();
   const isSelected = useAppSelector(s => getIsSelected(s, id));
-  // console.log({ id, isSelected });
-  // const theme = useTheme();
-
-  // themeStyles(theme)
 
   const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation();

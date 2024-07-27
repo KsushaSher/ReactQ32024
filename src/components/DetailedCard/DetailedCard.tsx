@@ -1,11 +1,8 @@
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import Loader from '../Loader';
 import { planetsApi } from '../../store/planetsApi';
-// import { useTheme } from '../Context/hooks';
 
 function DetailedCard() {
-  // const theme = useTheme();
-
   const navigate = useNavigate();
   const [search] = useSearchParams();
   const id = search.get('id');
