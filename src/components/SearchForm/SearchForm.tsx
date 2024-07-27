@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { getTestAttrs } from '../../../tests/getTestAttrs';
 
 interface IProps {
   onSubmit: (search: string) => void;
@@ -18,9 +19,14 @@ function SearchForm({ onSubmit, initialSearch }: IProps) {
   };
 
   return (
-    <form onSubmit={handleOnSubmit}>
-      <input placeholder="Search" onChange={handleOnChange} value={search} />
-      <button>Search</button>
+    <form {...getTestAttrs({ id: 'search-form' })} onSubmit={handleOnSubmit}>
+      <input
+        placeholder="Search"
+        {...getTestAttrs({ id: 'search-form-input' })}
+        onChange={handleOnChange}
+        value={search}
+      />
+      <button {...getTestAttrs({ id: 'search-form-button' })}>Search</button>
     </form>
   );
 }

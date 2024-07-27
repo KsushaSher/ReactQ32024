@@ -8,8 +8,8 @@ import { useLocalStorageState } from './useLocalStorage';
 import Pagination from './components/Pagination';
 import { useSearchParams } from 'react-router-dom';
 import { planetsApi } from './store/planetsApi';
-import FlyoutElement from './components/ FlyoutElement/ FlyoutEement';
-import DarkLightButton from './components/DarkLightButton/DarkLightButton';
+import FlyoutElement from './components/FlyoutElement';
+import DarkLightButton from './components/DarkLightButton';
 
 function Planets() {
   const [searchLS, setSearchLS] = useLocalStorageState(LS_SEARCH_UNIQ_KEY);
