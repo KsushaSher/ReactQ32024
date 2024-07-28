@@ -1,51 +1,23 @@
-import { ReactNode } from 'react';
-import './App.css';
-import SearchForm from './components/SearchForm';
-import React from 'react';
-import SearchResults from './components/SearchResults';
-import ErrorBoundary from './components/ErrorBoundary';
-import ButtonError from './components/ButtonError';
+import { Route, Routes } from 'react-router-dom';
+import ErrorPage from './error-page';
+import DetailedCard from './components/DetailedCard';
+import Planets from './components/Planets/Planets';
+import { useTheme } from './components/Context/hooks';
+import { getTestAttrs } from '../tests/getTestAttrs';
 
-export interface IItem {
-  url: string;
-  name: string;
-  orbital_period: number;
-  population: number;
-}
+function App() {
+  const theme = useTheme();
 
-interface IAppState {
-  items: IItem[];
-}
-
-class App extends React.Component<Record<string, never>, IAppState> {
-  constructor(props: Record<string, never>) {
-    super(props);
-    this.state = { items: [] };
-  }
-
-  handleSubmit = (search: string) => {
-    fetch(`https://swapi.dev/api/planets?search=${search}`)
-      .then(res => res.json())
-      .then(res => this.setState({ items: res.results }));
-  };
-
-  render(): ReactNode {
-    return (
-      <ErrorBoundary>
-        <main>
-          <header>
-            <div className="header_content">
-              <SearchForm onSubmit={this.handleSubmit} />
-              <ButtonError />
-            </div>
-          </header>
-          <section>
-            <SearchResults items={this.state.items} />
-          </section>
-        </main>
-      </ErrorBoundary>
-    );
-  }
+  return (
+    <main {...getTestAttrs({ id: 'main' })} className={theme}>
+      <Routes>
+        <Route path="/" element={<Planets />}>
+          <Route path="details" element={<DetailedCard />} />
+        </Route>
+        <Route path="*" element={<ErrorPage />} />
+      </Routes>
+    </main>
+  );
 }
 
 export default App;

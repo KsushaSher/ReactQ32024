@@ -19,5 +19,12 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'error',
     'react-compiler/react-compiler': 'error',
     'prettier/prettier': 'error',
+    'react/jsx-uses-react': 'off',
+    'react/react-in-jsx-scope': 'off',
+  },
+  settings: {
+    react: {
+      version: 'detect',
+    },
   },
 };
