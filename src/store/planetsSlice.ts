@@ -4,7 +4,7 @@ type PlanetsState = {
   selected: string[];
 };
 
-const initialState: PlanetsState = {
+export const initialState: PlanetsState = {
   selected: [],
 };
 

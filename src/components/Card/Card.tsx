@@ -3,7 +3,7 @@ import { IItem } from '../../api';
 import { getTestAttrs } from '../../../tests/getTestAttrs';
 import { useAppDispatch, useAppSelector } from '../../store/hook';
 import { setSelected } from '../../store/planetsSlice';
-import { getIsSelected } from '../../store/selectors';
+import { getIsSelected } from '../../store/selectors/selectors';
 
 interface IProps {
   item: IItem;

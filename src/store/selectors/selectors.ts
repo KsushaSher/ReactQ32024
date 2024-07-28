@@ -1,4 +1,4 @@
-import { RootState } from './store';
+import { RootState } from '../store';
 
 export const getIsSelected = (state: RootState, id: string) =>
   state.planets.selected.includes(id);

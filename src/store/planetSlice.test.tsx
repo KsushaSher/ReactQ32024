@@ -1,23 +1,26 @@
-import { describe, it, expect } from 'vitest';
-import { getIsSelected } from './selectors';
+import { initialState, reset, setSelected } from './planetsSlice';
+import { getArraySelectedId } from './selectors/selectors';
 import { makeStore } from './store';
 
-describe('getIsSelected selector', () => {
-  it('should return true if the id is in the selected array', () => {
-    const store = makeStore({ planets: { selected: ['planet1', 'planet2'] } });
-    const result = getIsSelected(store.getState(), 'planet1');
-    expect(result).toBe(true);
+describe('action setSelected', () => {
+  it('should ', () => {
+    const store = makeStore();
+    store.dispatch(setSelected('1'));
+    expect(getArraySelectedId(store.getState())).toStrictEqual(['1']);
   });
 
-  it('should return false if the id is not in the selected array', () => {
+  it('should ', () => {
     const store = makeStore();
-    const result = getIsSelected(store.getState(), 'planet4');
-    expect(result).toBe(false);
+    store.dispatch(setSelected('1'));
+    store.dispatch(setSelected('1'));
+    expect(getArraySelectedId(store.getState())).toStrictEqual([]);
   });
+});
 
-  it('should return false if the selected array is empty', () => {
-    const store = makeStore();
-    const result = getIsSelected(store.getState(), 'planet1');
-    expect(result).toBe(false);
+describe('action reset', () => {
+  it('should ', () => {
+    const store = makeStore({ planets: { selected: ['1', '2', '3'] } });
+    store.dispatch(reset());
+    expect(store.getState().planets).toStrictEqual(initialState);
   });
 });

@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from '../../store/hook';
 import { planetsApi } from '../../store/planetsApi';
 import { reset } from '../../store/planetsSlice';
-import { getArraySelectedId, getCount } from '../../store/selectors';
+import { getArraySelectedId, getCount } from '../../store/selectors/selectors';
 import Papa from 'papaparse';
 
 const FlyoutElement = () => {
