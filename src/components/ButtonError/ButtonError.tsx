@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { getTestAttrs } from '../../../tests/getTestAttrs';
 
 function ButtonError() {
   const [synthError, setSynthError] = useState<Error | null>(null);
@@ -9,7 +10,11 @@ function ButtonError() {
 
   if (synthError) throw synthError;
   return (
-    <button className="button_error" onClick={handleClick}>
+    <button
+      {...getTestAttrs({ id: 'error-button' })}
+      className="button_error"
+      onClick={handleClick}
+    >
       Throw error
     </button>
   );

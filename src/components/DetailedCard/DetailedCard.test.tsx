@@ -1,4 +1,3 @@
-// import React from 'react';
 import { describe, it, expect, vi } from 'vitest';
 import {
   fireEvent,
@@ -15,7 +14,6 @@ import DetailedCard from './DetailedCard';
 import { IDetailItem } from '../../api';
 
 const navigate = vi.fn();
-// Мокирование useNavigate и useSearchParams
 vi.mock('react-router-dom', async importOriginal => {
   const actual: Record<string, unknown> = await importOriginal();
   return {
@@ -25,7 +23,6 @@ vi.mock('react-router-dom', async importOriginal => {
   };
 });
 
-// Мокирование API запроса
 const mockPlanetData: IDetailItem = {
   url: '1',
   name: 'Tatooine',

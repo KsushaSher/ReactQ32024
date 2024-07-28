@@ -1,6 +1,4 @@
-// import React from 'react';
 import { fireEvent, screen } from '@testing-library/react';
-// import userEvent from '@testing-library/user-event';
 import { describe, it, expect } from 'vitest';
 import Pagination from './Pagination';
 import { renderWithEnv } from '../../../tests/utils';

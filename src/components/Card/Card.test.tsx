@@ -1,10 +1,10 @@
-import { fireEvent, /* render, */ screen } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { describe, it, expect } from 'vitest';
 import Card from './Card';
 import { IItem } from '../../api';
 import { renderWithEnv } from '../../../tests/utils';
-import { /* MemoryRouter, */ Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { setTestAttrs } from '../../../tests/getTestAttrs';
 
 const ITEM_MOCK: IItem = {

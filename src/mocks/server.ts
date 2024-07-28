@@ -2,7 +2,7 @@ import { setupServer } from 'msw/node';
 import { http, HttpResponse } from 'msw';
 
 export const server = setupServer(
-  http.get('https://swapi.dev/api/planets', (/* info */) => {
+  http.get('https://swapi.dev/api/planets', () => {
     return HttpResponse.json({
       results: [
         { name: 'Tatooine', population: '200000', url: '1' },
@@ -15,9 +15,7 @@ export const server = setupServer(
       prev: null,
     });
   }),
-  http.get('https://swapi.dev/api/planets/:id', (/* info */) => {
-    // const { id } = info.params;
-    // if (id === '1') {
+  http.get('https://swapi.dev/api/planets/:id', () => {
     return HttpResponse.json({
       name: 'Tatooine',
       rotation_period: '23',
@@ -28,6 +26,5 @@ export const server = setupServer(
       terrain: 'desert',
       population: '200000',
     });
-    // }
   }),
 );
