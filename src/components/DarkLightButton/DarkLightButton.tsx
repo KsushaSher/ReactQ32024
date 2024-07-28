@@ -1,4 +1,4 @@
-import Dark from '../../assets/dark.svg?react';
+import Dark from './dark.svg?react';
 import { useTheme, useThemeToggle } from '../Context/hooks';
 
 function DarkLightButton() {

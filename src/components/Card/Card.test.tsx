@@ -5,6 +5,7 @@ import Card from './Card';
 import { IItem } from '../../api';
 import { renderWithEnv } from '../../../tests/utils';
 import { /* MemoryRouter, */ Route, Routes } from 'react-router-dom';
+import { setTestAttrs } from '../../../tests/getTestAttrs';
 
 const ITEM_MOCK: IItem = {
   name: 'CARD_NAME',
@@ -28,7 +29,9 @@ describe('Card Component', () => {
       </Routes>,
     );
 
-    const button = screen.getByTestId('card-button');
+    const button = screen.getByTestId(
+      setTestAttrs({ id: 'card-button-open', value: ITEM_MOCK.url }),
+    );
     fireEvent.click(button);
 
     expect(screen.getByText('Details Page')).toBeInTheDocument();

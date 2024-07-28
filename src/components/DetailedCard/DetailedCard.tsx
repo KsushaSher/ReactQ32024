@@ -1,6 +1,7 @@
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import Loader from '../Loader';
 import { planetsApi } from '../../store/planetsApi';
+import { getTestAttrs } from '../../../tests/getTestAttrs';
 
 function DetailedCard() {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ function DetailedCard() {
   if (!data) return null;
 
   return (
-    <div className="item">
+    <div {...getTestAttrs({ id: 'detailed-card' })} className="item">
       <p>name: {data?.name}</p>
       <p>orbital period: {data?.orbital_period}</p>
       <p>population: {data?.population}</p>

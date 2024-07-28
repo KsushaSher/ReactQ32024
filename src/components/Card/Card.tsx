@@ -51,7 +51,7 @@ function Card({ item }: IProps) {
         onClick={e => e.stopPropagation()}
       />
       <button
-        {...getTestAttrs({ id: 'card-button' })}
+        {...getTestAttrs({ id: 'card-button-open', value: item.url })}
         onClick={handleClick}
         className="button_close_open"
       >

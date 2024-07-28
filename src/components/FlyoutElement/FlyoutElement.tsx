@@ -17,7 +17,6 @@ const FlyoutElement = () => {
   const handleClickDownload = async () => {
     const promises = arrayId.map(id => getPlanet({ id }));
     const res = await Promise.all(promises);
-    // console.log('res:', res);
 
     const csvFile = res.map(item => ({
       name: item.data?.name,

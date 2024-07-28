@@ -1,5 +1,13 @@
 export const DATA_TEST_ELEMENT = 'data-testid';
 
-export const getTestAttrs = ({ id }: { id: string }) => ({
-  [DATA_TEST_ELEMENT]: id,
+interface IArgs {
+  id: string;
+  value?: string;
+}
+
+export const getTestAttrs = (args: IArgs) => ({
+  [DATA_TEST_ELEMENT]: setTestAttrs(args),
 });
+
+export const setTestAttrs = ({ id, value }: IArgs) =>
+  [id, value].filter(i => i).join('|');
