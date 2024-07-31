@@ -10,12 +10,15 @@ function App() {
 
   return (
     <main {...getTestAttrs({ id: 'main' })} className={theme}>
-      <Routes>
+      <Planets />
+      {/* 
+            <Routes>
         <Route path="/" element={<Planets />}>
           <Route path="details" element={<DetailedCard />} />
         </Route>
         <Route path="*" element={<ErrorPage />} />
       </Routes>
+      */}
     </main>
   );
 }

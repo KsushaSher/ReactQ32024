@@ -13,20 +13,20 @@ import DarkLightButton from '../DarkLightButton';
 
 function Planets() {
   const [searchLS, setSearchLS] = useLocalStorageState(LS_SEARCH_UNIQ_KEY);
-  const [searchParams, setSearchParams] = useSearchParams();
-  const currentPage = searchParams.get('page');
+  // const [searchParams, setSearchParams] = useSearchParams();
+  // const currentPage = searchParams.get('page');
   const { data, isFetching } = planetsApi.useGetPlanetsQuery({
-    page: currentPage,
+    page: '1',
     search: searchLS,
   });
   const { results, count = 0 } = data || {};
 
   const handleSubmit = useCallback(
     (search: string) => {
-      setSearchParams({ page: '1' });
+      // setSearchParams({ page: '1' });
       setSearchLS(search);
     },
-    [setSearchLS, setSearchParams],
+    [setSearchLS /* setSearchParams */],
   );
 
   return (
@@ -41,11 +41,11 @@ function Planets() {
             </div>
           </div>
         </header>
-        <section>
+        {/* <section>
           <CardList items={results} loading={isFetching} />
           <Pagination totalPages={Math.ceil(count / ITEMS_PER_PAGE)} />
           <FlyoutElement />
-        </section>
+        </section> */}
       </main>
     </ErrorBoundary>
   );
