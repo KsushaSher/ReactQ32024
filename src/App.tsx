@@ -1,3 +1,5 @@
+'use client';
+
 import { Route, Routes } from 'react-router-dom';
 import ErrorPage from './error-page';
 import DetailedCard from './components/DetailedCard';

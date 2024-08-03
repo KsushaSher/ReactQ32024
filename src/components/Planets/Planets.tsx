@@ -10,6 +10,7 @@ import { useSearchParams } from 'react-router-dom';
 import { planetsApi } from '../../store/planetsApi';
 import FlyoutElement from '../FlyoutElement';
 import DarkLightButton from '../DarkLightButton';
+import Head from 'next/head';
 
 function Planets() {
   const [searchLS, setSearchLS] = useLocalStorageState(LS_SEARCH_UNIQ_KEY);
@@ -30,24 +31,29 @@ function Planets() {
   );
 
   return (
-    <ErrorBoundary>
-      <main>
-        <header>
-          <div className="header_content">
-            <SearchForm onSubmit={handleSubmit} initialSearch={searchLS} />
-            <div className="header_right_side">
-              <DarkLightButton />
-              <ButtonError />
+    <>
+      <Head>
+        <title>Planets</title>
+      </Head>
+      <ErrorBoundary>
+        <main>
+          <header>
+            <div className="header_content">
+              <SearchForm onSubmit={handleSubmit} initialSearch={searchLS} />
+              <div className="header_right_side">
+                <DarkLightButton />
+                <ButtonError />
+              </div>
             </div>
-          </div>
-        </header>
-        {/* <section>
-          <CardList items={results} loading={isFetching} />
-          <Pagination totalPages={Math.ceil(count / ITEMS_PER_PAGE)} />
-          <FlyoutElement />
-        </section> */}
-      </main>
-    </ErrorBoundary>
+          </header>
+          <section>
+            {/* <CardList items={results} loading={isFetching} /> */}
+            {/* <Pagination totalPages={Math.ceil(count / ITEMS_PER_PAGE)} /> */}
+            {/* <FlyoutElement /> */}
+          </section>
+        </main>
+      </ErrorBoundary>
+    </>
   );
 }
 
