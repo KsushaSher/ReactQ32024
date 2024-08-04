@@ -1,20 +1,15 @@
-import { useNavigate, useSearchParams } from 'react-router-dom';
 import Loader from '../Loader';
 import { planetsApi } from '../../store/planetsApi';
 import { getTestAttrs } from '../../../tests/getTestAttrs';
+import React from 'react';
+import Link from 'next/link';
 
-function DetailedCard() {
-  const navigate = useNavigate();
-  const [search] = useSearchParams();
-  const id = search.get('id');
-  const { data, isFetching } = planetsApi.useGetPlanetQuery({
-    id,
-  });
+interface IProps {
+  id: string;
+}
 
-  const handleClick = () => {
-    search.delete('id');
-    navigate({ pathname: '/', search: search.toString() });
-  };
+const DetailedCard: React.FC<IProps> = ({ id }) => {
+  const { data, isFetching } = planetsApi.useGetPlanetQuery({ id });
 
   if (isFetching)
     return (
@@ -36,11 +31,11 @@ function DetailedCard() {
       <p>gravity: {data?.gravity}</p>
       <p>terrain: {data?.terrain}</p>
       <p>surface_water: {data?.surface_water}</p>
-      <button onClick={handleClick} className="button_close_open">
+      <Link href="/" className="button_close_open">
         close detailed card
-      </button>
+      </Link>
     </div>
   );
-}
+};
 
 export default DetailedCard;

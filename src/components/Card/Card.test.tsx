@@ -2,7 +2,7 @@ import { fireEvent, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { describe, it, expect } from 'vitest';
 import Card from './Card';
-import { IItem } from '../../api';
+import { IItem } from '../../store/apiTypes';
 import { renderWithEnv } from '../../../tests/utils';
 import { Route, Routes } from 'react-router-dom';
 import { setTestAttrs } from '../../../tests/getTestAttrs';

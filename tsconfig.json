@@ -27,7 +27,7 @@
   },
   "include": [
     "./src",
-    "./pages",
+    "src/pages",
     "./dist/types/**/*.ts",
     "./next-env.d.ts",
     ".next/types/**/*.ts"

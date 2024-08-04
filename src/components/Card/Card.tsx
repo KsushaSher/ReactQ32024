@@ -1,9 +1,9 @@
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { IItem } from '../../api';
+import { IItem } from '../../store/apiTypes';
 import { getTestAttrs } from '../../../tests/getTestAttrs';
 import { useAppDispatch, useAppSelector } from '../../store/hook';
 import { setSelected } from '../../store/planetsSlice';
 import { getIsSelected } from '../../store/selectors/selectors';
+import Link from 'next/link';
 
 interface IProps {
   item: IItem;
@@ -17,18 +17,8 @@ const extractIdFromUrl = (url: string) =>
 
 function Card({ item }: IProps) {
   const id = extractIdFromUrl(item.url);
-  const navigate = useNavigate();
-  const [search] = useSearchParams();
   const dispatch = useAppDispatch();
   const isSelected = useAppSelector(s => getIsSelected(s, id));
-
-  const handleClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (id) {
-      search.set('id', id);
-      navigate({ pathname: `/details`, search: search.toString() });
-    }
-  };
 
   const handleToggle = () => dispatch(setSelected(id));
 
@@ -50,13 +40,14 @@ function Card({ item }: IProps) {
         checked={isSelected}
         onClick={e => e.stopPropagation()}
       />
-      <button
-        {...getTestAttrs({ id: 'card-button-open', value: item.url })}
-        onClick={handleClick}
+      <Link
         className="button_close_open"
+        {...getTestAttrs({ id: 'card-button-open', value: item.url })}
+        href={`/detailed/${id}`}
+        scroll={false}
       >
         Open detailed card
-      </button>
+      </Link>
     </div>
   );
 }

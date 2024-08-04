@@ -1,16 +1,18 @@
-import { useSearchParams } from 'react-router-dom';
+import { useRouter } from 'next/router';
 
 interface IProps {
   totalPages: number;
 }
 
 const Pagination = ({ totalPages }: IProps) => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const currentPage = Number(searchParams.get('page')) || 1;
+  const router = useRouter();
+  console.log(router);
+
+  const currentPage = /* Number(router.query.get('page')) ||  */ 1;
 
   const handlePageChange = (page: number) => {
     if (page > 0 && page <= totalPages) {
-      setSearchParams({ page: String(page) });
+      // setSearchParams({ page: String(page) });
     }
   };
 

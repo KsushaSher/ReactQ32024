@@ -11,7 +11,7 @@ import { Provider } from 'react-redux';
 import { makeStore } from '../../store/store';
 import { planetsApi } from '../../store/planetsApi';
 import DetailedCard from './DetailedCard';
-import { IDetailItem } from '../../api';
+import { IDetailItem } from '../../store/apiTypes';
 
 const navigate = vi.fn();
 vi.mock('react-router-dom', async importOriginal => {

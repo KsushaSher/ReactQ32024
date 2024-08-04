@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import type { IItem, IDetailItem, IApiGetPlanetsVars } from '../api';
+import type { IItem, IDetailItem, IApiGetPlanetsVars } from './apiTypes';
 
 export interface IGetPlanetsData {
   results: IItem[];
