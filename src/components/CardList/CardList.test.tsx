@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
 import CardList from './CardList';
-import { IItem } from '../../api';
+import { IItem } from '../../store/apiTypes';
 import { renderWithEnv } from '../../../tests/utils';
 
 const CARDS_MOCK: IItem[] = [

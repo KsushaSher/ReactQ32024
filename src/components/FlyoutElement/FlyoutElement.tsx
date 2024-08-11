@@ -1,3 +1,4 @@
+import { getTestAttrs } from '../../../tests/getTestAttrs';
 import { useAppDispatch, useAppSelector } from '../../store/hook';
 import { planetsApi } from '../../store/planetsApi';
 import { reset } from '../../store/planetsSlice';
@@ -44,8 +45,14 @@ const FlyoutElement = () => {
   if (count > 0) {
     return (
       <div className="flyout_element">
-        <p> Выбрано элементов: {count}</p>
-        <button onClick={handleClickReset} className="click_reset">
+        <p {...getTestAttrs({ id: 'flyout_element', value: `${count}` })}>
+          Выбрано элементов: {count}
+        </p>
+        <button
+          {...getTestAttrs({ id: 'flyout_element_reset' })}
+          onClick={handleClickReset}
+          className="click_reset"
+        >
           Отменить выбор
         </button>
         <button onClick={handleClickDownload} className="click_download">

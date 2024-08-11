@@ -238,7 +238,7 @@ input {
         cursor: pointer;
         transition: border-color 0.25s;
         color: rgb(54, 54, 54);
-        flex: 1 0 100%;
+        flex: 1 1 100%;
       }
     }
   }
@@ -259,6 +259,9 @@ input {
       border-radius: 5px;
       position: sticky;
       top: 0;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
       p {
         padding: 8px 0;
       }
@@ -268,12 +271,10 @@ input {
         padding: 0.2em 0.8em;
         font-size: 1em;
         font-weight: 500;
-        width: 100%;
         background-color: rgb(107, 107, 130);
         cursor: pointer;
         transition: border-color 0.25s;
         color: rgb(54, 54, 54);
-        flex: 1 0 100%;
       }
     }
   }
@@ -290,7 +291,7 @@ input {
 
 // start flyout element
 .flyout_element {
-  position: absolute;
+  position: fixed;
   width: 400px;
   z-index: 2;
   bottom: 14px;

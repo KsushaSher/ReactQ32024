@@ -1,13 +1,15 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import planetsReducer from './planetsSlice';
 import { planetsApi } from './planetsApi';
+import { setupListeners } from '@reduxjs/toolkit/query';
+import { createWrapper } from 'next-redux-wrapper';
 
 const rootReducer = combineReducers({
   planets: planetsReducer,
   [planetsApi.reducerPath]: planetsApi.reducer,
 });
 
-export const makeStore = (preloadedState?: Partial<RootState>) =>
+export const createStore = (preloadedState?: Partial<RootState>) =>
   configureStore({
     reducer: rootReducer,
     middleware: getDefaultMiddleware =>
@@ -15,8 +17,13 @@ export const makeStore = (preloadedState?: Partial<RootState>) =>
     preloadedState,
   });
 
-const store = makeStore();
+const store = createStore();
 
-export default store;
+setupListeners(store.dispatch);
+
+const makeStore = () => createStore();
+const wrapper = createWrapper(makeStore);
+
+export default wrapper;
 export type RootState = ReturnType<typeof rootReducer>;
 export type AppDispatch = typeof store.dispatch;

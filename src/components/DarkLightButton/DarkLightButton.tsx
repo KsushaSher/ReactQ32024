@@ -1,4 +1,4 @@
-import Dark from './dark.svg?react';
+import Dark from './dark.svg';
 import { useTheme, useThemeToggle } from '../Context/hooks';
 import { getTestAttrs } from '../../../tests/getTestAttrs';
 
@@ -16,7 +16,7 @@ function DarkLightButton() {
       className="button_theme"
       onClick={handleOnClick}
     >
-      <Dark className={`dark_light_button ${theme}`} width={25} height={25} />
+      <Dark className={`dark_light_button ${theme}`} />
     </button>
   );
 }
