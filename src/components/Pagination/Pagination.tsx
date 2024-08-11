@@ -6,13 +6,15 @@ interface IProps {
 
 const Pagination = ({ totalPages }: IProps) => {
   const router = useRouter();
-  console.log(router);
+  const { page, id } = router.query;
 
-  const currentPage = /* Number(router.query.get('page')) ||  */ 1;
+  const currentPage = Number(page) || 1;
 
   const handlePageChange = (page: number) => {
     if (page > 0 && page <= totalPages) {
-      // setSearchParams({ page: String(page) });
+      router.push({ query: { page, id } }, undefined, {
+        shallow: true,
+      });
     }
   };
 

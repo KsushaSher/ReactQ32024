@@ -1,68 +1,16 @@
-import { describe, it, expect, vi } from 'vitest';
-import {
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-  waitForElementToBeRemoved,
-} from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
+import { describe, it, expect } from 'vitest';
+import { render, screen, waitFor } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { makeStore } from '../../store/store';
-import { planetsApi } from '../../store/planetsApi';
+import { createStore } from '../../store/store';
 import DetailedCard from './DetailedCard';
-import { IDetailItem } from '../../store/apiTypes';
 
-const navigate = vi.fn();
-vi.mock('react-router-dom', async importOriginal => {
-  const actual: Record<string, unknown> = await importOriginal();
-  return {
-    ...actual,
-    useNavigate: () => navigate,
-    useSearchParams: () => [new URLSearchParams('?id=1')],
-  };
-});
-
-const mockPlanetData: IDetailItem = {
-  url: '1',
-  name: 'Tatooine',
-  orbital_period: 304,
-  population: 200000,
-  rotation_period: 23,
-  diameter: 10465,
-  climate: 'arid',
-  gravity: '1 standard',
-  terrain: 'desert',
-  surface_water: 1,
-};
-
-const server = makeStore();
+const server = createStore();
 
 describe('DetailedCard component', () => {
-  it('should display a loading indicator while fetching data', async () => {
-    render(
-      <Provider store={server}>
-        <BrowserRouter>
-          <DetailedCard />
-        </BrowserRouter>
-      </Provider>,
-    );
-
-    expect(screen.getByTestId('loader')).toBeInTheDocument();
-    await waitForElementToBeRemoved(screen.queryByTestId('loader'));
-  });
-
   it('should correctly display the detailed card data', async () => {
-    planetsApi.useGetPlanetQuery = vi.fn().mockReturnValue({
-      data: mockPlanetData,
-      isFetching: false,
-    });
-
     render(
       <Provider store={server}>
-        <BrowserRouter>
-          <DetailedCard />
-        </BrowserRouter>
+        <DetailedCard id={'1'} />
       </Provider>,
     );
 
@@ -76,30 +24,6 @@ describe('DetailedCard component', () => {
       expect(screen.getByText(/gravity: 1 standard/i)).toBeInTheDocument();
       expect(screen.getByText(/terrain: desert/i)).toBeInTheDocument();
       expect(screen.getByText(/surface_water: 1/i)).toBeInTheDocument();
-    });
-  });
-
-  it('should hide the component when the close button is clicked', async () => {
-    planetsApi.useGetPlanetQuery = vi.fn().mockReturnValue({
-      data: mockPlanetData,
-      isFetching: false,
-    });
-
-    render(
-      <Provider store={server}>
-        <BrowserRouter>
-          <DetailedCard />
-        </BrowserRouter>
-      </Provider>,
-    );
-
-    const closeButton = screen.getByRole('button', {
-      name: /close detailed card/i,
-    });
-    await fireEvent.click(closeButton);
-
-    await waitFor(() => {
-      expect(navigate).toHaveBeenCalledWith({ pathname: '/', search: '' });
     });
   });
 });

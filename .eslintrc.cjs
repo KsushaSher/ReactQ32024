@@ -22,6 +22,7 @@ module.exports = {
     'react/jsx-uses-react': 'off',
     'react/react-in-jsx-scope': 'off',
     'react/prop-types': 'off',
+    'react-refresh/only-export-components': 'off',
   },
   settings: {
     react: {

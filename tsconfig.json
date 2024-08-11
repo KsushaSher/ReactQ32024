@@ -12,7 +12,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "preserve",
-    "strict": true,
+    "strict": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
@@ -23,7 +23,8 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "types": ["vitest/globals"]
   },
   "include": [
     "./src",

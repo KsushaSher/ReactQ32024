@@ -1,14 +1,17 @@
+import React from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import Loader from '../Loader';
 import { planetsApi } from '../../store/planetsApi';
 import { getTestAttrs } from '../../../tests/getTestAttrs';
-import React from 'react';
-import Link from 'next/link';
 
 interface IProps {
   id: string;
 }
 
 const DetailedCard: React.FC<IProps> = ({ id }) => {
+  const router = useRouter();
+  const page = router.query.page || 1;
   const { data, isFetching } = planetsApi.useGetPlanetQuery({ id });
 
   if (isFetching)
@@ -21,7 +24,10 @@ const DetailedCard: React.FC<IProps> = ({ id }) => {
   if (!data) return null;
 
   return (
-    <div {...getTestAttrs({ id: 'detailed-card' })} className="item">
+    <div
+      {...getTestAttrs({ id: 'detailed-card', value: data?.name })}
+      className="item"
+    >
       <p>name: {data?.name}</p>
       <p>orbital period: {data?.orbital_period}</p>
       <p>population: {data?.population}</p>
@@ -31,7 +37,13 @@ const DetailedCard: React.FC<IProps> = ({ id }) => {
       <p>gravity: {data?.gravity}</p>
       <p>terrain: {data?.terrain}</p>
       <p>surface_water: {data?.surface_water}</p>
-      <Link href="/" className="button_close_open">
+
+      <Link
+        href={{ query: { page } }}
+        className="button_close_open"
+        scroll={false}
+        shallow
+      >
         close detailed card
       </Link>
     </div>

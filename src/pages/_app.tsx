@@ -1,16 +1,20 @@
-import type { AppProps } from 'next/app';
+import React, { FC } from 'react';
+import { Provider } from 'react-redux';
+import { AppProps } from 'next/app';
+import wrapper from '../store/store';
+import ThemeProvider from '../components/Context';
 import '../styles/reset.css';
 import '../styles/Styles.scss';
-import { Provider } from 'react-redux';
-import store from '../store/store';
-import ThemeProvider from '../components/Context';
 
-export default function App({ Component, pageProps }: AppProps) {
+const App: FC<AppProps> = ({ Component, ...rest }) => {
+  const { store, props } = wrapper.useWrappedStore(rest);
   return (
     <ThemeProvider>
       <Provider store={store}>
-        <Component {...pageProps} />
+        <Component {...props.pageProps} />
       </Provider>
     </ThemeProvider>
   );
-}
+};
+
+export default App;

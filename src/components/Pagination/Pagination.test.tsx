@@ -2,6 +2,7 @@ import { fireEvent, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import Pagination from './Pagination';
 import { renderWithEnv } from '../../../tests/utils';
+import router from 'next-router-mock';
 
 describe('Pagination component', () => {
   it('should update the URL query parameter when the page is changed', () => {
@@ -9,8 +10,8 @@ describe('Pagination component', () => {
     const prevButton = screen.getByRole('button', { name: /Предыдущая/i });
     const nextButton = screen.getByRole('button', { name: /Следующая/i });
     fireEvent.click(nextButton);
-    expect(location.search).toBe('?page=2');
+    expect(router.query.page).toBe(2);
     fireEvent.click(prevButton);
-    expect(location.search).toBe('?page=1');
+    expect(router.query.page).toBe(1);
   });
 });

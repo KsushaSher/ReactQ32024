@@ -1,11 +1,13 @@
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import store from '../src/store/store';
+import { createStore } from '../src/store/store';
 
 export const renderWithEnv = (ui: React.ReactNode, { route = '/' } = {}) => {
   window.history.pushState({}, 'Test page', route);
 
   return render(ui, {
-    wrapper: ({ children }) => <Provider store={store}>{children}</Provider>,
+    wrapper: ({ children }) => (
+      <Provider store={createStore()}>{children}</Provider>
+    ),
   });
 };
