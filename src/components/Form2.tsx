@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 function Form2() {
   return (
     <div className="modal_window ">
@@ -8,7 +10,7 @@ function Form2() {
             <p>Create a form:</p>
           </div>
 
-          <div className="close_modal"></div>
+          <Link to="/" className="close_modal" />
         </div>
 
         <div className="form_body">
@@ -19,8 +21,8 @@ function Form2() {
                 id="name"
                 type="text"
                 placeholder="enter your name"
-                value={value}
-                onChange={update}
+                // value={value}
+                // onChange={update}
               ></input>
             </div>
             <div>
