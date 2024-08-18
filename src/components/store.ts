@@ -2,29 +2,34 @@ import { configureStore, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IFormValues } from '../types/types';
 import { useSelector } from 'react-redux';
 
-type IDataItem = Omit<IFormValues, 'image'> & { image: string };
+type IDataItem = Omit<IFormValues, 'image'> & { image?: string };
 
 interface FormState {
   countries: string[];
-  data: IDataItem[];
+  uncontrolledData: IDataItem[];
+  controlledData: IDataItem[];
 }
 
 const INITIAL_STATE: FormState = {
   countries: ['USA', 'Canada', 'UK', 'Germany', 'France', 'Australia', 'India'],
-  data: [],
+  uncontrolledData: [],
+  controlledData: [],
 };
 
 const formSlice = createSlice({
   name: 'form',
   initialState: INITIAL_STATE,
   reducers: {
-    setFormDataItem(state, action: PayloadAction<IDataItem>) {
-      state.data.push(action.payload);
+    setUncontrolledDataItem(state, action: PayloadAction<IDataItem>) {
+      state.uncontrolledData.push(action.payload);
+    },
+    setControlledDataItem(state, action: PayloadAction<IDataItem>) {
+      state.controlledData.push(action.payload);
     },
   },
 });
 
-export const { setFormDataItem } = formSlice.actions;
+export const { setUncontrolledDataItem, setControlledDataItem } = formSlice.actions;
 
 const store = configureStore({
   reducer: {

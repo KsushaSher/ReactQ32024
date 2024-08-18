@@ -7,7 +7,7 @@ export interface IFormValues {
   gender: string;
   termsAccepted: boolean;
   country: string;
-  image?: File | null;
+  image?: FileList | null;
 }
 
 export type IErrors = Partial<{

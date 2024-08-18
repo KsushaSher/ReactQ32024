@@ -1,13 +1,16 @@
 import React, { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState, setFormDataItem } from './store';
+import { RootState, setUncontrolledDataItem } from './store';
 import { validationSchema } from './validationSchema';
 import * as Yup from 'yup';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { IErrors, IFormValues } from '../types/types';
+import PasswordStrength from './PasswordStrength';
 
-const FormComponent: React.FC = () => {
+const UncontrolledForm: React.FC = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [password, setPassword] = useState('');
   const countries = useSelector((state: RootState) => state.form.countries);
 
   const nameRef = useRef<HTMLInputElement>(null);
@@ -32,7 +35,7 @@ const FormComponent: React.FC = () => {
       gender: genderRef.current?.value || '',
       termsAccepted: termsAcceptedRef.current?.checked || false,
       country: countryRef.current?.value || '',
-      image: imageRef.current?.files?.[0] || null,
+      image: imageRef.current?.files || null,
     };
 
     try {
@@ -57,14 +60,18 @@ const FormComponent: React.FC = () => {
     event.preventDefault();
     const validatedValues = await validate();
     if (validatedValues) {
-      if (validatedValues.image) {
+      const { image, ...values } = validatedValues;
+      if (image) {
         const reader = new FileReader();
         reader.onloadend = () => {
           const base64String = reader.result as string;
-          dispatch(setFormDataItem({ ...validatedValues, image: base64String }));
-          alert('Форма успешно отправлена!');
+          dispatch(setUncontrolledDataItem({ ...values, image: base64String }));
+          navigate('/');
         };
-        reader.readAsDataURL(validatedValues.image);
+        reader.readAsDataURL(image[0]);
+      } else {
+        dispatch(setUncontrolledDataItem(values));
+        navigate('/');
       }
     }
   };
@@ -75,44 +82,49 @@ const FormComponent: React.FC = () => {
         <form onSubmit={handleSubmit}>
           <div className="form_header">
             <div>
-              <h1>FORM 1</h1>
-              <p>Create a form:</p>
+              <h1>UncontrolledForm</h1>
             </div>
 
             <Link className="close_modal" to="/" />
           </div>
 
-          <div>
+          <div className="field">
             <label htmlFor="name">Name:</label>
             <input id="name" type="text" ref={nameRef} />
-            {errors.name && <div>{errors.name}</div>}
+            {errors.name && <div className="fieldError">{errors.name}</div>}
           </div>
 
-          <div>
+          <div className="field">
             <label htmlFor="age">Age:</label>
             <input id="age" type="number" ref={ageRef} />
-            {errors.age && <div>{errors.age}</div>}
+            {errors.age && <div className="fieldError">{errors.age}</div>}
           </div>
 
-          <div>
+          <div className="field">
             <label htmlFor="email">Email:</label>
             <input id="email" type="email" ref={emailRef} />
-            {errors.email && <div>{errors.email}</div>}
+            {errors.email && <div className="fieldError">{errors.email}</div>}
           </div>
 
-          <div>
+          <div className="field">
             <label htmlFor="password">Password:</label>
-            <input id="password" type="password" ref={passwordRef} />
-            {errors.password && <div>{errors.password}</div>}
+            <input
+              id="password"
+              type="password"
+              ref={passwordRef}
+              onChange={e => setPassword(e.target.value)}
+            />
+            {errors.password && <div className="fieldError">{errors.password}</div>}
           </div>
+          <PasswordStrength value={password} />
 
-          <div>
+          <div className="field">
             <label htmlFor="confirmPassword">Confirm Password:</label>
             <input id="confirmPassword" type="password" ref={confirmPasswordRef} />
-            {errors.confirmPassword && <div>{errors.confirmPassword}</div>}
+            {errors.confirmPassword && <div className="fieldError">{errors.confirmPassword}</div>}
           </div>
 
-          <div>
+          <div className="field">
             <label>Gender:</label>
             <div>
               <label>
@@ -124,18 +136,10 @@ const FormComponent: React.FC = () => {
                 Female
               </label>
             </div>
-            {errors.gender && <div>{errors.gender}</div>}
+            {errors.gender && <div className="fieldError">{errors.gender}</div>}
           </div>
 
-          <div>
-            <label>
-              <input type="checkbox" ref={termsAcceptedRef} />
-              Accept Terms and Conditions
-            </label>
-            {errors.termsAccepted && <div>{errors.termsAccepted}</div>}
-          </div>
-
-          <div>
+          <div className="field">
             <label htmlFor="country">Country:</label>
             <select id="country" ref={countryRef}>
               <option value="">Select a country</option>
@@ -145,13 +149,25 @@ const FormComponent: React.FC = () => {
                 </option>
               ))}
             </select>
-            {errors.country && <div>{errors.country}</div>}
+            {errors.country && <div className="fieldError">{errors.country}</div>}
           </div>
 
-          <div>
+          <div className="field">
             <label htmlFor="image">Upload picture:</label>
-            <input id="image" type="file" accept=".png, .jpeg" ref={imageRef} />
-            {errors.image && <div>{errors.image}</div>}
+            <input
+              id="image"
+              type="file"
+              accept=".png, .jpeg, .jpg"
+              multiple={false}
+              ref={imageRef}
+            />
+            {errors.image && <div className="fieldError">{errors.image}</div>}
+          </div>
+
+          <div className="field">
+            <label htmlFor="termsAccepted">Accept Terms and Conditions</label>
+            <input id="termsAccepted" type="checkbox" ref={termsAcceptedRef} />
+            {errors.termsAccepted && <div className="fieldError">{errors.termsAccepted}</div>}
           </div>
 
           <button type="submit">Submit</button>
@@ -161,4 +177,4 @@ const FormComponent: React.FC = () => {
   );
 };
 
-export default FormComponent;
+export default UncontrolledForm;
